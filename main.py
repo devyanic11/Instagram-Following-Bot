@@ -33,7 +33,7 @@ time.sleep(10)
 followers = WebDriverWait(driver, timeout=60).until(lambda d: d.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[2]/div[2]/section/main/div/header/section/ul/li[2]/a'))
 followers.click()
 
-#To Click on Follow Button in Popup
+#To Click on Follow Button in Popup(Not Working)
 buttons = WebDriverWait(driver, timeout=60).until(lambda d: d.find_elements(By.TAG_NAME, 'button'))
 for btn in buttons:
     driver.execute_script("arguments[0].click();", btn)
