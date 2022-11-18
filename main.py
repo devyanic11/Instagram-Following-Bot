@@ -10,7 +10,7 @@ PASSWORD = "YOUR PASSWORD"
 chrome_driver_path = "YOUR CHROMEDRIVER PATH"
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
 
-driver.get("https://www.instagram.com/wonderful_lives/")
+driver.get("https://www.instagram.com/caught_n_posted_8088/")
 
 log_in = WebDriverWait(driver, timeout=60).until(lambda d: d.find_element(By.CSS_SELECTOR, 'a button'))
 log_in.click()
