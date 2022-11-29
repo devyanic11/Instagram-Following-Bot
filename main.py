@@ -23,23 +23,30 @@ password.send_keys(PASSWORD)
 time.sleep(2)
 enter = driver.find_element(By.XPATH, '//*[@id="loginForm"]/div/div[3]/button')
 enter.click()
-
 time.sleep(15)
 not_now = WebDriverWait(driver, timeout=30).until(lambda d: d.find_element(By.CSS_SELECTOR, '._ac8f button'))
 not_now.click()
 
-#To click on Followers List
 time.sleep(10)
 followers = WebDriverWait(driver, timeout=60).until(lambda d: d.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[2]/div[2]/section/main/div/header/section/ul/li[2]/a'))
 followers.click()
 
-#To Click on Follow Button in Popup(Not Working)
-buttons = WebDriverWait(driver, timeout=60).until(lambda d: d.find_elements(By.TAG_NAME, 'button'))
-for btn in buttons:
-    driver.execute_script("arguments[0].click();", btn)
-    time.sleep(2)
+buttons = WebDriverWait(driver, timeout=60).until(lambda d: d.find_elements(By.CSS_SELECTOR, 'button._acan._acap._acas'))
+time.sleep(5)
+count = 0
+while True:
+    for btn in buttons:
+        try:
+            driver.execute_script("arguments[0].click();", btn)
+            count += 1
+            print(f"{count} buttons clicked")
+            time.sleep(5)
+        except:
+            print("Skipped something")
+            pass
+    scr1 = WebDriverWait(driver, timeout=60).until(lambda d: d.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]'))
+    time.sleep(5)
+    driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scr1)
+    print("scrollled")
+    buttons = WebDriverWait(driver, timeout=60).until(lambda d: d.find_elements(By.CSS_SELECTOR, 'button._acan._acap._acas'))
     
-#To Scroll in Popup
-# scr1 = WebDriverWait(driver, timeout=60).until(lambda d: d.find_element(By.XPATH, '/html/body/div[1]/div/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]'))
-# while True:
-#     driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scr1)
